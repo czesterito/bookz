@@ -1,0 +1,56 @@
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+}
+
+.card {
+  display: flex;
+  flex-flow: column;
+  width: 80%;
+}
+
+.book-info {
+  display: flex;
+  flex-flow: row;
+  height: 300px;
+}
+
+.info {
+  display: flex;
+  flex-flow: column;
+  padding: 0 10px 10px 10px;
+  width: 60%;
+}
+
+.info * {
+  padding: 0 5px 10px 5px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  white-space: initial;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.book-description {
+  height: 200px;
+  display: flex;
+  flex-flow: column;
+}
+
+.description {
+  padding-top: 10px;
+}
+
+.pic {
+  width: 280px;
+  height: 280px;
+  background-color: red;
+}

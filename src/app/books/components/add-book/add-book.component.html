@@ -1,0 +1,43 @@
+<div class="container">
+  <mat-card class="add-card">
+    <mat-card-header>
+      <mat-card-title>Dodaj książkę</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="form" class="add-container" #f="ngForm">
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Nazwa książki</mat-label>
+        <input matInput formControlName="title" autocomplete="off">
+        <mat-error *ngIf="title.errors?.required">Wpisz tytuł</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Autor</mat-label>
+        <input matInput formControlName="author" autocomplete="off">
+        <mat-error *ngIf="author.errors?.required">Wpisz autora</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Kategoria</mat-label>
+        <mat-select formControlName="category" >
+          <mat-option [value]="category" *ngFor="let category of categories">{{category}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="category.errors?.required">Wybierz kategorię</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Stan książki</mat-label>
+        <mat-select formControlName="condition">
+          <mat-option [value]="condition" *ngFor="let condition of conditions">{{condition}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="condition.errors?.required">Wybierz stan książki</mat-error>
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="accent"
+        type="submit"
+        (click)="addBook()">Dodaj książkę</button>
+    </form>
+  </mat-card>
+</div>

@@ -1,0 +1,108 @@
+.container {
+  display: flex;
+  flex-flow: row;
+  background-color: #edeff1;
+  height: 100%;
+  overflow: hidden;
+}
+
+.categories {
+  top: 15px;
+  left: 15px;
+  height: max-content;
+  padding-right: 0;
+  padding-left: 0;
+  margin-right: 15px;
+}
+
+.right-container {
+  display: flex;
+  flex-flow: column;
+  width: 65%;
+}
+
+.books {
+  margin-top: 15px;
+  overflow-y: auto;
+}
+
+.filter {
+  display: flex;
+  flex-flow: row;
+  top: 15px;
+  margin-left: 30px;
+  margin-bottom: 15px;
+}
+
+.btn {
+  margin-left: 5px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.find {
+  width: 250px;
+}
+
+#categories-title {
+  font-size: 20px;
+  text-align: center;
+}
+
+#all {
+  font-weight: bold;
+}
+
+.book {
+  display: flex;
+  flex-flow: row;
+  margin: 0 0 15px 30px;
+  max-width: 100%;
+  height: 200px;
+  padding: 0;
+}
+
+.book-info {
+  display: flex;
+  flex-flow: column;
+  padding: 10px;
+  width: 60%;
+}
+
+.book-btn-container {
+  width: 40%;
+  position: relative;
+}
+
+.book-btn {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+
+.book-info * {
+  padding: 5px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  white-space: initial;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.title:hover {
+  cursor: pointer;
+}
+
+.pic {
+  height: 100%;
+  width: 200px;
+  background-color: coral;
+}

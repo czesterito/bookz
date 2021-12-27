@@ -1,0 +1,142 @@
+.container {
+  display: flex;
+  flex-flow: row;
+  background-color: #edeff1;
+  height: 100%;
+  overflow: hidden;
+}
+
+.options {
+  top: 15px;
+  left: 15px;
+  height: max-content;
+  padding-right: 0;
+  padding-left: 0;
+  margin-right: 15px;
+}
+
+mat-list-option {
+  width: 200px !important;
+  text-align: center !important;
+}
+
+.right-container {
+  display: flex;
+  flex-flow: column;
+  width: 65%;
+  margin-left: 30px;
+}
+
+.books {
+  margin-top: 15px;
+  overflow-y: auto;
+}
+
+.filter {
+  display: flex;
+  flex-flow: row;
+  top: 15px;
+  margin-bottom: 15px;
+}
+
+.btn {
+  margin-left: 5px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.find {
+  width: 250px;
+}
+
+#options-title {
+  font-size: 20px;
+  text-align: center;
+}
+
+.book {
+  display: flex;
+  flex-flow: row;
+  margin-bottom: 15px;
+  max-width: 100%;
+  height: 200px;
+  padding: 0;
+}
+
+.book-info {
+  display: flex;
+  flex-flow: column;
+  padding: 10px;
+  width: 60%;
+}
+
+.book-info * {
+  padding: 5px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  white-space: initial;
+
+}
+
+.title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.pic {
+  height: 100%;
+  width: 200px;
+  background-color: coral;
+}
+
+.table {
+  position: relative;
+  top: 15px;
+  width: 65%;
+}
+
+table {
+  margin-left: 30px;
+  width: 100%;
+}
+
+.credentials {
+  top: 15px;
+}
+
+.credentials-title {
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.credentials-options {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.name-mail {
+  display: flex;
+  width: 50%;
+  flex-flow: column nowrap;
+  padding-top: 10px;
+  font-size: 15px;
+}
+
+.password {
+  display: flex;
+  width: 50%;
+  flex-flow: column nowrap;
+  padding-top: 10px;
+  font-size: 15px;
+}
+
+mat-form-field {
+  width: 60%;
+}

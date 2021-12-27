@@ -1,0 +1,57 @@
+<div class="container">
+  <mat-card class="register-card">
+    <mat-card-header>
+      <mat-card-title>Zarejestruj się</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="form" class="register-container" #f="ngForm">
+
+      <mat-form-field appearance="legacy">
+        <mat-label>E-mail</mat-label>
+        <input matInput formControlName="email">
+        <mat-error *ngIf="email.errors?.required || email.errors?.pattern">Wprowadź poprawny adres e-mail</mat-error>
+        <mat-error *ngIf="email.errors?.userExists">Email {{email.value}} jest zajęty</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Nazwa użytkownika</mat-label>
+        <input matInput formControlName="name">
+        <mat-error *ngIf="name.errors?.required">Wprowadź nazwę użytkownika</mat-error>
+        <mat-error *ngIf="email.errors?.userExists">Nazwa {{email.value}} jest zajęta</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Hasło</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+        <mat-error *ngIf="password.errors?.required">Wprowadź hasło</mat-error>
+        <mat-error *ngIf="password.errors?.passwordStrength">
+          Hasło musi mieć przynajmniej 6 znaków, w tym 1 duża litera, 1 mała litera, 1 cyfra
+        </mat-error>
+        <button
+          mat-icon-button
+          matSuffix type="button"
+          (click)="hide = !hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Powtórz hasło</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="samePassword">
+        <mat-error *ngIf="samePassword.errors?.required">Wprowadź hasło</mat-error>
+        <button
+          mat-icon-button
+          matSuffix type="button"
+          (click)="hide = !hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-error *ngIf="form.errors?.isSame">Hasła nie są takie same</mat-error>
+
+      <button
+        mat-raised-button
+        color="accent"
+        type="submit"
+        (click)="createUser()">Zarejestruj się</button>
+    </form>
+  </mat-card>
+</div>

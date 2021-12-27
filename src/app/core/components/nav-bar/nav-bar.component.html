@@ -1,0 +1,47 @@
+<mat-toolbar color="primary" class="fixed-header">
+  <h1>
+    <a routerLink="." class="app-name">BookZ</a>
+  </h1>
+  <span class="spacer"></span>
+  <button
+    *ngIf="userService.loggedUser"
+    class="search-btn"
+    color="accent"
+    mat-raised-button
+    [matMenuTriggerFor]="menu">Książki</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item
+            routerLink="/add">Dodaj książkę</button>
+    <button mat-menu-item>Wystaw książkę</button>
+  </mat-menu>
+  <button
+    *ngIf="userService.loggedUser"
+    mat-raised-button
+    class="search-btn"
+    routerLink="/search"
+    color="accent">Wyszukaj</button>
+  <button
+    mat-raised-button
+    routerLink="/login"
+    color="accent"
+    *ngIf="userService.loggedUser === null; else logged">Login</button>
+  <ng-template #logged>
+    <button
+      class="user-button"
+      color="accent"
+      mat-raised-button
+      [matMenuTriggerFor]="menu">{{userService.loggedUser.username}}</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item
+              routerLink="/profile">Moje Konto</button>
+      <button mat-menu-item
+              routerLink="login"
+              (click)="logout()">Wyloguj</button>
+    </mat-menu>
+  </ng-template>
+</mat-toolbar>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>
+
+

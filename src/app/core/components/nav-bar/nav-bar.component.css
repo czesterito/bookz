@@ -1,0 +1,41 @@
+.app-name {
+  font-size: 22px;
+  margin-left: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.user-button {
+  margin-left: 10px;
+}
+
+.fixed-header {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%  !important;
+}
+
+mat-toolbar {
+  height: 8%;
+  box-shadow: 0 0 7px 0;
+}
+
+.content {
+  height: 92%;
+  flex: 1;
+  background-color: #edeff1;
+}
+
+.search-btn {
+  margin-right: 20px;
+}
+
+
+
+

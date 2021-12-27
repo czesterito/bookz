@@ -1,0 +1,157 @@
+<div class="container">
+  <mat-card class="options">
+    <p id="options-title">Opcje</p>
+    <mat-selection-list #options [multiple]="false">
+      <mat-list-option value="books">
+        Moje książki
+        <mat-divider></mat-divider>
+      </mat-list-option>
+      <mat-list-option value="exchange">
+        Wymiana
+        <mat-divider></mat-divider>
+      </mat-list-option>
+      <mat-list-option value="history">
+        Historia
+        <mat-divider></mat-divider>
+      </mat-list-option>
+      <mat-list-option value="credentials">
+        Moje dane
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-card>
+
+  <div class="table" *ngIf="options.selectedOptions.selected[0]?.value === 'books'">
+    <table mat-table
+           [dataSource]="dataSource"
+           class="mat-elevation-z8">
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nazwa </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="author">
+        <th mat-header-cell *matHeaderCellDef> Autor </th>
+        <td mat-cell *matCellDef="let element"> {{element.author}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef> Kategoria </th>
+        <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="condition">
+        <th mat-header-cell *matHeaderCellDef> Stan </th>
+        <td mat-cell *matCellDef="let element"> {{element.condition}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef> Miasto </th>
+        <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsBooks"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsBooks;"></tr>
+    </table>
+  </div>
+
+  <div class="table" *ngIf="options.selectedOptions.selected[0]?.value === 'exchange'">
+    <table mat-table
+           [dataSource]="dataSource"
+           class="mat-elevation-z8">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="owner">
+        <th mat-header-cell *matHeaderCellDef> Właściciel </th>
+        <td mat-cell *matCellDef="let element"> {{element.owner}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nazwa </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="author">
+        <th mat-header-cell *matHeaderCellDef> Autor </th>
+        <td mat-cell *matCellDef="let element"> {{element.author}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef> Kategoria </th>
+        <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="condition">
+        <th mat-header-cell *matHeaderCellDef> Stan </th>
+        <td mat-cell *matCellDef="let element"> {{element.condition}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef> Miasto </th>
+        <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsExchange"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsExchange;"></tr>
+    </table>
+  </div>
+
+  <div *ngIf="options.selectedOptions.selected[0]?.value === 'credentials'" class="right-container">
+    <mat-card class="credentials">
+      <p class="credentials-title">Moje dane</p>
+      <mat-divider></mat-divider>
+      <div class="credentials-options">
+        <div class="name-mail">
+          <div>
+            <p>Nazwa:</p>
+            <mat-form-field appearance="outline">
+              <input matInput>
+            </mat-form-field>
+          </div>
+          <div>
+            <p>E-mail:</p>
+            <mat-form-field appearance="outline">
+              <input matInput>
+            </mat-form-field>
+          </div>
+          <div>
+            <button
+              mat-raised-button
+              color="accent"
+              type="submit">Zapisz zmiany</button>
+          </div>
+        </div>
+        <div class="password">
+          <p>Zmiana hasła:</p>
+          <mat-form-field appearance="outline">
+            <mat-label>Stare hasło</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Nowe hasło</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Nowe hasło</mat-label>
+            <input matInput>
+          </mat-form-field>
+          <div>
+            <button
+              mat-raised-button
+              color="accent"
+              type="submit">Zmień hasło</button>
+          </div>
+        </div>
+      </div>
+
+    </mat-card>
+  </div>
+
+</div>
+
