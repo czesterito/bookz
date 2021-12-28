@@ -1,22 +1,33 @@
 <div class="container">
-  <mat-card class="categories">
-    <p id="categories-title">Kategorie</p>
-    <mat-selection-list [multiple]="false">
-      <mat-list-option selected id="all">Wszystko</mat-list-option>
-      <mat-divider></mat-divider>
-      <mat-list-option *ngFor="let category of categories" [value]="category">
-        {{category}}
-        <mat-divider></mat-divider>
-      </mat-list-option>
-    </mat-selection-list>
+  <mat-card class="left-container">
+    <p class="left-container-title">Kategorie</p>
+    <mat-form-field appearance="outline" class="left-field">
+      <mat-select [(value)]="selected">
+        <mat-option [value]="category" *ngFor="let category of categories">{{category}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p class="left-container-title">Miejscowość</p>
+    <mat-form-field appearance="outline" class="left-field">
+      <input matInput autocomplete="off" [value]="city">
+    </mat-form-field>
+    <button mat-raised-button color="accent" class="btn">Wybierz</button>
   </mat-card>
   <div class="right-container">
     <mat-card class="filter">
       <div>
         <mat-form-field appearance="legacy" class="find">
           <mat-label>Szukaj</mat-label>
-          <mat-icon matSuffix>search</mat-icon>
-          <input matInput autocomplete="off">
+          <input matInput
+                 autocomplete="off"
+                 [(ngModel)]="value"
+                 [matAutocomplete]="auto"
+                 (keyup)="search(value)">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let advertisement of advertisements$ | async"
+                        >
+              <div mat-line>{{advertisement.book.title}}</div>
+            </mat-option>
+          </mat-autocomplete>
         </mat-form-field>
         <button mat-raised-button color="accent" class="btn">Wyszukaj</button>
       </div>
@@ -25,19 +36,18 @@
     </mat-card>
     <div class="books">
       <mat-card class="book"
-                *ngFor="let book of books | paginate: { itemsPerPage: 5, currentPage: page }">
+                *ngFor="let book of cos | paginate: { itemsPerPage: 5, currentPage: page }">
         <div class="book-info">
-          <div class="title" (click)="pickBook(book.id)">{{book.title}}</div>
+          <div class="title" (click)="pickBook(book.bookId)">{{book.title}}</div>
           <div>Autor: {{book.author}}</div>
           <div>Kategoria: {{book.category}}</div>
-          <div>Stan: {{book.condition}}</div>
           <div>Miejscowość: </div>
         </div>
         <div class="book-btn-container">
           <button
             mat-raised-button
             class="book-btn"
-            (click)="pickBook(book.id)"
+            (click)="pickBook(book.bookId)"
             color="accent">Wybierz</button>
         </div>
       </mat-card>

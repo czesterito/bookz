@@ -8,6 +8,7 @@ import {AddBookComponent} from './books/components/add-book/add-book.component';
 import {ProfileComponent} from './core/components/profile/profile.component';
 import {BookComponent} from './books/components/book/book.component';
 import {AuthGuard} from './shared/guard/auth.guard';
+import {AddAdvertisementComponent} from './books/components/add-advertisement/add-advertisement.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,11 @@ const routes: Routes = [
   {
     path: 'add',
     component: AddBookComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'makead',
+    component: AddAdvertisementComponent,
     canActivate: [AuthGuard]
   },
   {

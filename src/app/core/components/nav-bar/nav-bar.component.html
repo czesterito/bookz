@@ -12,7 +12,8 @@
   <mat-menu #menu="matMenu">
     <button mat-menu-item
             routerLink="/add">Dodaj książkę</button>
-    <button mat-menu-item>Wystaw książkę</button>
+    <button mat-menu-item
+            routerLink="/makead">Wystaw książkę</button>
   </mat-menu>
   <button
     *ngIf="userService.loggedUser"

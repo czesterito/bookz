@@ -1,0 +1,32 @@
+<div class="container">
+  <mat-card class="add-card">
+    <mat-card-header>
+      <mat-card-title>Dodaj ogłoszenie</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="form" class="add-container" #f="ngForm">
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Książka</mat-label>
+        <mat-select formControlName="book" >
+          <mat-option [value]="book" *ngFor="let book of books">{{book.title}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="book.errors?.required">Wybierz książkę</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Miejscowość</mat-label>
+        <input matInput formControlName="city" autocomplete="off">
+        <mat-error *ngIf="city.errors?.required">Wpisz miejsowość</mat-error>
+      </mat-form-field>
+
+      <p>Opis:</p>
+      <textarea formControlName="description" autocomplete="off"></textarea>
+
+      <button
+        mat-raised-button
+        color="accent"
+        type="submit"
+        (click)="makeAdvertisement()">Utwórz ogłoszenie</button>
+    </form>
+  </mat-card>
+</div>

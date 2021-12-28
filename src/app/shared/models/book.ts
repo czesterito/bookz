@@ -1,19 +1,19 @@
 import {User} from './user';
 
 export class Book {
-  id: number;
+  bookId: number;
   user: User;
   title: string;
   author: string;
   category: string;
-  condition: string;
+  taken: boolean;
 
-  constructor(id: number, user: User, title: string, author: string, category: string, condition: string) {
-    this.id = id;
+  constructor(id: number, user: User, title: string, author: string, category: string, taken: boolean = false) {
+    this.bookId = id;
     this.user = user;
     this.title = title;
     this.author = author;
     this.category = category;
-    this.condition = condition;
+    this.taken = taken;
   }
 }

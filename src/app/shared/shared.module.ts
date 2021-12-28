@@ -14,6 +14,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatSelectModule} from '@angular/material/select';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {MatTableModule} from '@angular/material/table';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 
@@ -35,7 +36,8 @@ import {MatTableModule} from '@angular/material/table';
     MatDividerModule,
     MatSelectModule,
     NgxPaginationModule,
-    MatTableModule
+    MatTableModule,
+    MatAutocompleteModule
   ]
 })
 export class SharedModule { }

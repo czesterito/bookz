@@ -25,14 +25,6 @@
         <mat-error *ngIf="category.errors?.required">Wybierz kategorię</mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="legacy">
-        <mat-label>Stan książki</mat-label>
-        <mat-select formControlName="condition">
-          <mat-option [value]="condition" *ngFor="let condition of conditions">{{condition}}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="condition.errors?.required">Wybierz stan książki</mat-error>
-      </mat-form-field>
-
       <button
         mat-raised-button
         color="accent"

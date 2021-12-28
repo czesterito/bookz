@@ -9,14 +9,14 @@
         <mat-label>E-mail</mat-label>
         <input matInput formControlName="email">
         <mat-error *ngIf="email.errors?.required || email.errors?.pattern">Wprowadź poprawny adres e-mail</mat-error>
-        <mat-error *ngIf="email.errors?.userExists">Email {{email.value}} jest zajęty</mat-error>
+        <mat-error *ngIf="email.errors?.emailExists">Email {{email.value}} jest zajęty</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="legacy">
         <mat-label>Nazwa użytkownika</mat-label>
         <input matInput formControlName="name">
         <mat-error *ngIf="name.errors?.required">Wprowadź nazwę użytkownika</mat-error>
-        <mat-error *ngIf="email.errors?.userExists">Nazwa {{email.value}} jest zajęta</mat-error>
+        <mat-error *ngIf="name.errors?.nameExists">Nazwa {{name.value}} jest zajęta</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="legacy">

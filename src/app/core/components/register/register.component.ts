@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {
-  createPasswordStrengthValidator,
+  createPasswordStrengthValidator, emailExistsValidator, nameExistsValidator,
   samePassword
 } from '../../../shared/validators/register.validator';
 import {UserService} from '../../../shared/services/user.service';
@@ -28,7 +28,8 @@ export class RegisterComponent implements OnInit{
       email: new FormControl('', [
         Validators.required,
         Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
-      ]
+      ],
+        emailExistsValidator(this.userService)
       ),
       password: new FormControl('', [
         Validators.required,
@@ -39,7 +40,9 @@ export class RegisterComponent implements OnInit{
       ]),
       name: new FormControl('', [
         Validators.required
-      ])
+      ],
+        nameExistsValidator(this.userService)
+      ),
     }, {
       validators: [samePassword()],
       updateOn: 'blur',

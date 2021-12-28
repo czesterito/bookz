@@ -20,7 +20,6 @@ export class AddBookComponent implements OnInit {
   form!: FormGroup;
   categories = ['Biografia', 'Fantastyka', 'Filozofia', 'Historia', 'Horror', 'Kryminał', 'Literatura młodzieżowa',
     'Literatura obyczajowa', 'Powieść', 'Romans', 'Science fiction'];
-  conditions = ['Dobry', 'Średni', 'Zły'];
 
   constructor(private snackBar: MatSnackBar, private fb: FormBuilder, private bookService: BookService, private router: Router,
               private userService: UserService) {}
@@ -34,9 +33,6 @@ export class AddBookComponent implements OnInit {
         Validators.required
       ]),
       category: new FormControl('', [
-        Validators.required
-      ]),
-      condition: new FormControl('', [
         Validators.required
       ])
     });
@@ -54,10 +50,6 @@ export class AddBookComponent implements OnInit {
     return this.form.get('category');
   }
 
-  get condition(): any {
-    return this.form.get('condition');
-  }
-
   addBook(): void {
     this.form.markAllAsTouched();
     if (this.form.valid) {
@@ -66,7 +58,7 @@ export class AddBookComponent implements OnInit {
         title: this.title.value,
         author: this.author.value,
         category: this.category.value,
-        condition: this.condition.value
+        taken: false
       };
       this.bookService.createNewBook(data)
         .subscribe(

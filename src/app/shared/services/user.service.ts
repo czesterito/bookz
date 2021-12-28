@@ -82,6 +82,15 @@ export class UserService {
       );
   }
 
+  getUserBooks(id: any): Observable<any>  {
+    return this.http.get(`${baseUrl}/${id}/books`)
+      .pipe(
+        catchError(error => {
+          return errorFunction(error);
+        })
+      );
+  }
+
   createNewUser(data: any): Observable<any> {
     return this.http.post(`${baseUrl}/`, data)
       .pipe(

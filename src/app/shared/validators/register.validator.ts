@@ -1,4 +1,6 @@
-import {AbstractControl, FormGroup, ValidationErrors, ValidatorFn} from '@angular/forms';
+import {AbstractControl, AsyncValidatorFn, FormGroup, ValidationErrors, ValidatorFn} from '@angular/forms';
+import {UserService} from '../services/user.service';
+import {map} from 'rxjs/operators';
 
 
 export function createPasswordStrengthValidator(): ValidatorFn {
@@ -40,3 +42,18 @@ export function samePassword(): ValidationErrors {
   };
 }
 
+export function emailExistsValidator(user: UserService): AsyncValidatorFn {
+  return (control: AbstractControl) => {
+    return user.checkIfEmailIsTaken(control.value).pipe(
+      map(isTaken => (isTaken ? { emailExists: true } : null))
+    );
+  };
+}
+
+export function nameExistsValidator(user: UserService): AsyncValidatorFn {
+  return (control: AbstractControl) => {
+    return user.checkIfNameIsTaken(control.value).pipe(
+      map(isTaken => (isTaken ? { nameExists: true } : null))
+    );
+  };
+}

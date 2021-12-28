@@ -6,13 +6,14 @@
   overflow: hidden;
 }
 
-.categories {
+.left-container {
+  display: flex;
+  flex-flow: column;
   top: 15px;
   left: 15px;
   height: max-content;
-  padding-right: 0;
-  padding-left: 0;
   margin-right: 15px;
+  margin-bottom: 25px;
 }
 
 .right-container {
@@ -46,13 +47,13 @@
   width: 250px;
 }
 
-#categories-title {
-  font-size: 20px;
+.left-container-title {
+  font-size: 18px;
   text-align: center;
 }
 
-#all {
-  font-weight: bold;
+.left-field {
+  margin-bottom: 30px;
 }
 
 .book {

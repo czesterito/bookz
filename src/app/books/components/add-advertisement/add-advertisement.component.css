@@ -1,0 +1,56 @@
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+}
+
+.add-card {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 20%;
+}
+
+.add-container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+mat-form-field{
+  margin: 5px 0;
+  width: 90%;
+}
+
+button {
+  margin-top:20px;
+}
+
+p {
+  display: block;
+  align-self: flex-start;
+  margin: 5px 0 0 5%;
+  font-family: "Helvetica", sans-serif;
+}
+
+textarea {
+  width: 90%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  outline-color: #6b705c;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+  font-family: "Helvetica", sans-serif;
+}
+
+textarea:focus {
+  outline: none;
+  border: 2px solid #6b705c;
+}
