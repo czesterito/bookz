@@ -15,6 +15,10 @@ import {MatSelectModule} from '@angular/material/select';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {MatTableModule} from '@angular/material/table';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatDialogModule} from '@angular/material/dialog';
+import {tokenInterceptor} from './interceptors/refresh-token.interceptor';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {TokenHeaderInterceptor} from './interceptors/token-header.interceptor';
 
 
 
@@ -37,7 +41,12 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatSelectModule,
     NgxPaginationModule,
     MatTableModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDialogModule
+  ],
+  providers: [
+    tokenInterceptor,
+    {provide: HTTP_INTERCEPTORS, useClass: TokenHeaderInterceptor, multi: true },
   ]
 })
 export class SharedModule { }

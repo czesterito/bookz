@@ -6,9 +6,10 @@ import {HomeComponent} from './core/components/home/home.component';
 import {SearchComponent} from './books/components/search/search.component';
 import {AddBookComponent} from './books/components/add-book/add-book.component';
 import {ProfileComponent} from './core/components/profile/profile.component';
-import {BookComponent} from './books/components/book/book.component';
 import {AuthGuard} from './shared/guard/auth.guard';
 import {AddAdvertisementComponent} from './books/components/add-advertisement/add-advertisement.component';
+import {BookComponent} from './books/components/book/book.component';
+import {ChatComponent} from './books/components/chat/chat.component';
 
 const routes: Routes = [
   {
@@ -44,8 +45,13 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'book/:id',
+    path: 'advertisement/:id',
     component: BookComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'chat/:id',
+    component: ChatComponent,
     canActivate: [AuthGuard]
   }
 ];

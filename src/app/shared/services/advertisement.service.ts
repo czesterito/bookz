@@ -41,13 +41,46 @@ export class AdvertisementService {
       );
   }
 
-  searchForAdvertisement(text: any, id: any, category: any = '', city: any = ''): Observable<any> {
+  getUserAdvertisements(id: any): Observable<any>  {
+    return this.http.get(`${baseUrl}/user/${id}`)
+      .pipe(
+        catchError(error => {
+          return errorFunction(error);
+        })
+      );
+  }
+
+  deleteAdvertisement(id: any): Observable<any>  {
+    return this.http.delete(`${baseUrl}/${id}`)
+      .pipe(
+        catchError(error => {
+          return errorFunction(error);
+        })
+      );
+  }
+
+  changeDescription(advertisementId: any, newDescription: any): Observable<any> {
+    const params = new HttpParams()
+      .set('newDescription', newDescription);
+
+    return this.http.put(`${baseUrl}/${advertisementId}/changeDescription`, undefined, {params})
+      .pipe(
+        catchError(error => {
+          return errorFunction(error);
+        })
+      );
+  }
+
+  searchForAdvertisement(text: any, id: any, category: any = '', city: any = '', pageNr: any): Observable<any> {
     text = text.toLowerCase();
+    category = category.toLowerCase();
+    city = city.toLowerCase();
     const params = new HttpParams()
       .set('text', text)
       .set('id', id)
       .set('category', category)
-      .set('city', city);
+      .set('city', city)
+      .set('pageNr', pageNr);
     return this.http.get(`${baseUrl}/findBy`, {params})
       .pipe(
         catchError(error => {

@@ -24,7 +24,7 @@
         <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
         <mat-error *ngIf="password.errors?.required">Wprowadź hasło</mat-error>
         <mat-error *ngIf="password.errors?.passwordStrength">
-          Hasło musi mieć przynajmniej 6 znaków, w tym 1 duża litera, 1 mała litera, 1 cyfra
+          Hasło musi mieć przynajmniej 6 znaków, w tym 1 dużą literę, 1 małą literę, 1 cyfrę
         </mat-error>
         <button
           mat-icon-button

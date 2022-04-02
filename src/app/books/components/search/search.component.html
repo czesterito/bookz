@@ -2,15 +2,15 @@
   <mat-card class="left-container">
     <p class="left-container-title">Kategorie</p>
     <mat-form-field appearance="outline" class="left-field">
-      <mat-select [(value)]="selected">
-        <mat-option [value]="category" *ngFor="let category of categories">{{category}}</mat-option>
+      <mat-select [(value)]="category">
+        <mat-option [value]="categ" *ngFor="let categ of categories">{{categ}}</mat-option>
       </mat-select>
     </mat-form-field>
     <p class="left-container-title">Miejscowość</p>
     <mat-form-field appearance="outline" class="left-field">
-      <input matInput autocomplete="off" [value]="city">
+      <input matInput autocomplete="off" [(ngModel)]="city">
     </mat-form-field>
-    <button mat-raised-button color="accent" class="btn">Wybierz</button>
+    <button mat-raised-button color="accent" class="btn" (click)="applyConditions(1, '', category, city)">Wybierz</button>
   </mat-card>
   <div class="right-container">
     <mat-card class="filter">
@@ -24,30 +24,30 @@
                  (keyup)="search(value)">
           <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let advertisement of advertisements$ | async"
-                        >
+                        (click)="value = advertisement.book.title">
               <div mat-line>{{advertisement.book.title}}</div>
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
-        <button mat-raised-button color="accent" class="btn">Wyszukaj</button>
+        <button mat-raised-button color="accent" class="btn" (click)="applyConditions(1, value)">Wyszukaj</button>
       </div>
       <span class="spacer"></span>
-      <pagination-controls (pageChange)="page = $event" nextLabel="Następny" previousLabel="Poprzedni"></pagination-controls>
+      <pagination-controls (pageChange)="applyConditions($event, value)" nextLabel="Następny" previousLabel="Poprzedni"></pagination-controls>
     </mat-card>
     <div class="books">
       <mat-card class="book"
-                *ngFor="let book of cos | paginate: { itemsPerPage: 5, currentPage: page }">
+                *ngFor="let adv of advertisements | paginate: { itemsPerPage: 10, currentPage: page, totalItems: total }">
         <div class="book-info">
-          <div class="title" (click)="pickBook(book.bookId)">{{book.title}}</div>
-          <div>Autor: {{book.author}}</div>
-          <div>Kategoria: {{book.category}}</div>
-          <div>Miejscowość: </div>
+          <div class="title" (click)="pickAdv(adv.advertisementId)">{{adv.book.title}}</div>
+          <div>Autor: {{adv.book.author}}</div>
+          <div>Kategoria: {{adv.book.category}}</div>
+          <div>Miejscowość: {{adv.city}}</div>
         </div>
         <div class="book-btn-container">
           <button
             mat-raised-button
             class="book-btn"
-            (click)="pickBook(book.bookId)"
+            (click)="pickAdv(adv.advertisementId)"
             color="accent">Wybierz</button>
         </div>
       </mat-card>

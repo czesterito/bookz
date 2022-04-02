@@ -46,7 +46,12 @@ export class UserService {
   getUserByEmail(email: any): Observable<any> {
     const params = new HttpParams()
       .set('email', email.toLowerCase());
-    return this.http.get(baseUrl + '/email', {params});
+    return this.http.get(baseUrl, {params})
+      .pipe(
+        catchError(error => {
+          return errorFunction(error);
+        })
+      );
   }
 
   getUserByName(username: any): Observable<any> {
@@ -61,20 +66,59 @@ export class UserService {
   }
 
   checkIfEmailIsTaken(email: any): Observable<any> {
-    const params = new HttpParams()
-      .set('email', email.toLowerCase());
-    return this.http.get(baseUrl + '/emailTaken', {params, responseType: 'text'}, )
-      .pipe(
-        catchError(error => {
-          return errorFunction(error);
-        })
-      );
+    if (this.loggedUser) {
+      if (email !== this.loggedUser.email) {
+        const params = new HttpParams()
+          .set('email', email.toLowerCase());
+        return this.http.get(baseUrl + '/emailTaken', {params, responseType: 'text'}, )
+          .pipe(
+            catchError(error => {
+              return errorFunction(error);
+            })
+          );
+      } else {
+        return new Observable();
+      }
+    } else {
+      const params = new HttpParams()
+        .set('email', email.toLowerCase());
+      return this.http.get(baseUrl + '/emailTaken', {params, responseType: 'text'}, )
+        .pipe(
+          catchError(error => {
+            return errorFunction(error);
+          })
+        );
+    }
   }
 
   checkIfNameIsTaken(username: any): Observable<any> {
-    const params = new HttpParams()
-      .set('username', username.toLowerCase());
-    return this.http.get(baseUrl + '/nameTaken', {params, responseType: 'text'}, )
+    if (this.loggedUser) {
+      if (username !== this.loggedUser.username) {
+        const params = new HttpParams()
+          .set('username', username.toLowerCase());
+        return this.http.get(baseUrl + '/nameTaken', {params, responseType: 'text'}, )
+          .pipe(
+            catchError(error => {
+              return errorFunction(error);
+            })
+          );
+      } else {
+        return new Observable();
+      }
+    } else {
+      const params = new HttpParams()
+        .set('username', username.toLowerCase());
+      return this.http.get(baseUrl + '/nameTaken', {params, responseType: 'text'}, )
+        .pipe(
+          catchError(error => {
+            return errorFunction(error);
+          })
+        );
+    }
+  }
+
+  updateUser(user: User): Observable<any> {
+    return this.http.put(`${baseUrl}/${user.userId}`, user)
       .pipe(
         catchError(error => {
           return errorFunction(error);

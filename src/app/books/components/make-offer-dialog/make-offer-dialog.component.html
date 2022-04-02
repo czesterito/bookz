@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Wybierz książkę do wymiany</h1>
+<form [formGroup]="form" class="add-container" #f="ngForm">
+  <mat-form-field appearance="outline">
+    <mat-label>Książka</mat-label>
+    <mat-select formControlName="book" >
+      <mat-option [value]="book" *ngFor="let book of books">{{book.title}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="book.errors?.required">Wybierz książkę</mat-error>
+  </mat-form-field>
+
+  <div mat-dialog-actions class="buttons">
+    <button mat-raised-button (click)="cancel()">Anuluj</button>
+    <button mat-raised-button
+            cdkFocusInitial
+            color="primary"
+            (click)="select(book.value)">
+      Wybierz
+    </button>
+  </div>
+</form>

@@ -4,6 +4,7 @@
   background-color: #edeff1;
   height: 100%;
   overflow: hidden;
+  width: 100%;
 }
 
 .options {
@@ -83,6 +84,10 @@ mat-list-option {
 
 }
 
+.table-row:hover {
+  background: #efefef;
+}
+
 .title {
   font-weight: bold;
   font-size: 20px;
@@ -97,12 +102,31 @@ mat-list-option {
 .table {
   position: relative;
   top: 15px;
-  width: 65%;
+  width: 95%;
+  max-height: 90%;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 table {
   margin-left: 30px;
-  width: 100%;
+  width: 95%;
+}
+
+.mat-column-username {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+  width: 28% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }
 
 .credentials {
@@ -139,4 +163,8 @@ table {
 
 mat-form-field {
   width: 60%;
+}
+
+.password-form {
+  margin-bottom: 5px;
 }

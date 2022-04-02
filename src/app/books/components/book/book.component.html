@@ -1,18 +1,30 @@
 <div class="container">
   <mat-card class="card">
-    <div class="book-info">
-      <div class="pic"></div>
-      <div class="info">
-        <div class="title">Tytuł</div>
-        <div>Autor: </div>
-        <div>Kategoria: </div>
-        <div>Stan: </div>
-        <div>Miejscowość: </div>
-      </div>
+    <div class="info">
+      <div class="title">{{advertisement.book.title}}</div>
+      <div>Autor: {{advertisement.book.author}}</div>
+      <div>Kategoria: {{advertisement.book.category}}</div>
+      <div>Miejscowość: {{advertisement.city}}</div>
     </div>
     <div class="book-description">
       <div class="title">Opis</div>
-      <div class="description">aktualny opis</div>
+      <div class="description" *ngIf="userService.loggedUser.userId !== advertisement.book.user.userId">
+        {{advertisement.description}}
+      </div>
+      <div class="description-active"
+           *ngIf="!descriptionChange && userService.loggedUser.userId === advertisement.book.user.userId"
+           (click)="changeDescription($event)">
+        {{description}}
+      </div>
+      <textarea *ngIf="userService.loggedUser.userId === advertisement.book.user.userId"
+                #textbox [value]="description"
+                [hidden]="!descriptionChange"
+                (keydown.enter)="changeDescription($event)"
+                (focusout)="changeDescription($event)"> </textarea>
+    </div>
+    <div class="spacer" *ngIf="userService.loggedUser.userId !== advertisement.book.user.userId"></div>
+    <div class="btn" *ngIf="userService.loggedUser.userId !== advertisement.book.user.userId">
+      <button mat-raised-button color="accent" (click)="makeOffer()">Wymiana</button>
     </div>
   </mat-card>
 </div>

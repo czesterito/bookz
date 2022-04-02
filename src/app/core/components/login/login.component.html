@@ -6,7 +6,7 @@
     <form [formGroup]="form" class="login-container" #f="ngForm">
 
       <mat-form-field appearance="legacy">
-        <mat-label>Nazwa użytkownika</mat-label>
+        <mat-label>E-mail użytkownika</mat-label>
         <input matInput formControlName="email" autocomplete="off">
         <mat-error>Wprowadź nazwę</mat-error>
       </mat-form-field>
@@ -27,6 +27,7 @@
         type="submit"
         (click)="login()"
         >Zaloguj się</button>
+      <mat-error *ngIf="wrongCredentials">Email lub hasło jest błędne</mat-error>
     </form>
   </mat-card>
 </div>

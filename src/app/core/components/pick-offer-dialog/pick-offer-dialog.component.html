@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>Oferowana książka</h1>
+
+<p class="title">{{data.book.title}}</p>
+<p>Autor: {{data.book.author}}</p>
+<p>Kategoria: {{data.book.category}}</p>
+
+<div mat-dialog-actions class="buttons">
+  <button mat-raised-button (click)="cancel()">Anuluj</button>
+  <button mat-raised-button
+          cdkFocusInitial
+          *ngIf="data.accepted"
+          (click)="pickChat()"
+          color="primary">
+    Chat
+  </button>
+  <button mat-raised-button
+          cdkFocusInitial
+          *ngIf="!data.accepted"
+          [disabled]="data.book.user.userId === userService.loggedUser.userId"
+          (click)="acceptOffer()"
+          color="primary">
+    Akceptuj
+  </button>
+</div>
+

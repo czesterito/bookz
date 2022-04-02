@@ -1,0 +1,13 @@
+h1 {
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+mat-form-field {
+  display: flex;
+  justify-content: center;
+}

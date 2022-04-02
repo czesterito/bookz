@@ -60,29 +60,20 @@ export class AddAdvertisementComponent implements OnInit {
 
 
   makeAdvertisement(): void {
-    this.form.markAllAsTouched();
-    if (this.form.valid) {
-      const data = {
-        book: this.book.value,
-        city: this.city.value,
-        description: this.description.value,
-        active: true
-      };
-      this.advertisementService.createNewAdvertisement(data)
-        .subscribe(
-          (response: Advertisement) => {
-            this.book.value.taken = true;
-            this.bookService.updateBook(this.book.value)
-              .subscribe(resp => {
-                this.snackBar.open('Ogłoszenie zostało dodane', undefined, {
-                  duration: 2000,
-                  horizontalPosition: this.horizontalPosition,
-                  verticalPosition: this.verticalPosition,
-                });
-                this.router.navigate(['/']);
-              });
-          });
-    }
+    const data = {
+      book: this.book.value,
+      city: this.city.value,
+      description: this.description.value
+    };
+    this.advertisementService.createNewAdvertisement(data)
+      .subscribe(
+        () => {
+          this.book.value.taken = true;
+          this.bookService.updateBook(this.book.value)
+            .subscribe(() => {
+              this.router.navigate(['/']);
+            });
+        });
   }
 
 }

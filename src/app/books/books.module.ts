@@ -7,11 +7,15 @@ import { BookComponent } from './components/book/book.component';
 import { AdvertisementComponent } from './components/advertisement/advertisement.component';
 import { AddAdvertisementComponent } from './components/add-advertisement/add-advertisement.component';
 import {FormsModule} from '@angular/forms';
+import { MakeOfferDialogComponent } from './components/make-offer-dialog/make-offer-dialog.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 
 
 @NgModule({
-  declarations: [SearchComponent, AddBookComponent, BookComponent, AdvertisementComponent, AddAdvertisementComponent],
+  declarations: [SearchComponent, AddBookComponent, BookComponent, AdvertisementComponent, AddAdvertisementComponent,
+    MakeOfferDialogComponent,
+    ChatComponent],
   imports: [
     CommonModule,
     SharedModule,

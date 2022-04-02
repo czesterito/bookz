@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
-import {environment} from '../../../environments/environment';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {errorFunction} from '../models/app-error';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {Book} from '../models/book';
+import {environment} from '../../../environments/environment';
+import {User} from '../models/user';
+import {Offer} from '../models/offer';
 
-const baseUrl = environment.springUrl + '/book';
+const baseUrl = environment.springUrl + '/offer';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BookService {
+export class OfferService {
 
   constructor(private http: HttpClient) { }
 
-  createNewBook(data: any): Observable<any> {
+  createNewOffer(data: any): Observable<any> {
     return this.http.post(`${baseUrl}/`, data)
       .pipe(
         catchError(error => {
@@ -24,8 +25,8 @@ export class BookService {
       );
   }
 
-  getBook(bookId: any): Observable<any> {
-    return this.http.get(`${baseUrl}/${bookId}`)
+  getOffer(offerId: any): Observable<any> {
+    return this.http.get(`${baseUrl}/${offerId}`)
       .pipe(
         catchError(error => {
           return errorFunction(error);
@@ -33,7 +34,7 @@ export class BookService {
       );
   }
 
-  getAllBooks(): Observable<any> {
+  getAllOffers(): Observable<any> {
     return this.http.get(`${baseUrl}/`)
       .pipe(
         catchError(error => {
@@ -42,16 +43,7 @@ export class BookService {
       );
   }
 
-  updateBook(book: Book): Observable<any> {
-    return this.http.put(`${baseUrl}/${book.bookId}`, book)
-      .pipe(
-        catchError(error => {
-          return errorFunction(error);
-        })
-      );
-  }
-
-  deleteBook(id: any): Observable<any>  {
+  deleteOffer(id: any): Observable<any>  {
     return this.http.delete(`${baseUrl}/${id}`)
       .pipe(
         catchError(error => {
@@ -60,16 +52,22 @@ export class BookService {
       );
   }
 
-  searchForBooks(text: any, id: any): Observable<any> {
-    text = text.toLowerCase();
-    const params = new HttpParams()
-      .set('text', text)
-      .set('id', id);
-    return this.http.get(`${baseUrl}/findBy`, {params})
+  getUserOffers(id: any): Observable<any>  {
+    return this.http.get(`${baseUrl}/user/${id}`)
       .pipe(
         catchError(error => {
           return errorFunction(error);
         })
       );
   }
+
+  updateOffer(offer: Offer): Observable<any> {
+    return this.http.put(`${baseUrl}/${offer.offerId}`, offer)
+      .pipe(
+        catchError(error => {
+          return errorFunction(error);
+        })
+      );
+  }
+
 }
